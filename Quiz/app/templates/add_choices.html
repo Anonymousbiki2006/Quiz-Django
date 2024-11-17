@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block bodytxt %}
+
+<div class='container mt-5'>
+    <h2 class='text-center'>Add a Choice</h2>
+
+    <p><strong>Question: </strong> {{question.text}} </p>
+
+</div>
+
+<form method='POST' action="">
+    {% csrf_token %}
+
+    <div class='form-group'>
+        {{form.text.label.tag}}
+        {{form.text.|as_crispy_field}}
+    </div>
+
+    <div class='form-group'>
+        {{form.is_correct.label_tag}}
+        {{form.is_correct|as_crispy_field}}
+    </div>
+
+    <button type='submit' class='btn btn-primary'> Add Choice </button>
+    <a href="{% url "question_detail" question.id %}" class='btn btn-primary'>Back to Question</a>
+
+</form>
+
+{% endblock %}

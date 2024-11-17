@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block bodytxt %}
+<div class="container mt-5">
+    <h2 class="text-center">{{ quiz.title }}</h2>
+
+    <form method="POST" action="{% url 'submit_quiz' quiz.id %}">
+        {% csrf_token %} 
+
+        {% for question in questions %}
+            <div class="card my-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ question.text }}</h5>
+                    
+                    <!-- Choices with radio buttons -->
+                    <ul class="list-group">
+                        {% for choice in question.choices.all %}
+                            <li class="list-group-item">
+                                <input type="radio" name="question_{{ question.id }}" value="{{ choice.id }}" id="choice_{{ choice.id }}">
+                                <label for="choice_{{ choice.id }}">{{ choice.text }}</label>
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item">No choices available for this question</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary">Submit Quiz</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

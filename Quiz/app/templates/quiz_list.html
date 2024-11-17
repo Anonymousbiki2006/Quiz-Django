@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %} Avaiable Quiz {% endblock %}
+
+{% block bodytxt %}
+
+<div class='container mt-5'>
+    
+    <h2>Avaiable Quizes</h2>
+    <ul class='list-group'>
+        {% for quiz in quizzes %}
+            <li class='list-group-item'>
+                <a href="{% url "quiz_view" quiz.quiz_id%}" class='text-decoration-none'>
+                    {{quiz.title}}
+                </a>
+            </li>
+        {%empty%}
+            <li>No Quizes Avaiable</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endblock %}
