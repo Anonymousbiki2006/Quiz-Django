@@ -16,7 +16,7 @@
     {% block navbar %}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Quizzer</a>
+            <a class="navbar-brand" href="{% url 'quiz_list' %}">Quizzer</a>
                 {% if not user.is_authenticated %}
                     <a href="{% url 'register' %}" class="btn btn-primary mx-2">
                         Register
